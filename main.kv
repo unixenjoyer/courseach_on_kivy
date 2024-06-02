@@ -1,0 +1,120 @@
+#:import rgba kivy.utils.get_color_from_hex
+
+<CustomButton@Button>:
+    background_normal: ''
+    background_color: rgba('#88C0D0')
+    color: rgba('#ECEFF4')
+    size_hint_y: None
+    height: '48dp'
+    font_size: '18sp'
+    background_down: rgba('#81A1C1')
+    canvas.before:
+        Color:
+            rgba: rgba('#88C0D0')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15]
+
+<CustomTextInput@TextInput>:
+    background_normal: ''
+    background_active: ''
+    foreground_color: rgba('#ECEFF4')
+    cursor_color: rgba('#ECEFF4')
+    background_color: rgba('#4C566A')
+    hint_text_color: rgba('#D8DEE9')
+    size_hint_y: None
+    height: '48dp'
+    font_size: '18sp'
+    padding: [10, 10, 10, 10]
+    canvas.before:
+        Color:
+            rgba: rgba('#4C566A')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15]
+
+<CustomLabel@Label>:
+    color: rgba('#ECEFF4')
+    font_size: '18sp'
+    size_hint_y: None
+    height: '48dp'
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Color:
+                rgba: rgba('#2E3440')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CustomTextInput:
+            id: username
+            hint_text: 'Username'
+            multiline: False
+        CustomTextInput:
+            id: password
+            hint_text: 'Password'
+            password: True
+            multiline: False
+        CustomButton:
+            text: 'Login'
+            on_press: root.login()
+        CustomButton:
+            text: 'Register'
+            on_press: root.go_to_register()
+
+<RegisterScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Color:
+                rgba: rgba('#2E3440')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CustomTextInput:
+            id: username
+            hint_text: 'Username'
+            multiline: False
+        CustomTextInput:
+            id: password
+            hint_text: 'Password'
+            password: True
+            multiline: False
+        CustomButton:
+            text: 'Register'
+            on_press: root.register()
+        CustomButton:
+            text: 'Back to Login'
+            on_press: app.root.current = 'login'
+
+<WorkScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '10dp'
+        canvas.before:
+            Color:
+                rgba: rgba('#2E3440')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CustomLabel:
+            id: status_label
+            text: 'Press "Start Work" to begin.'
+        CustomButton:
+            text: 'Start Work'
+            on_press: root.start_work()
+        CustomButton:
+            text: 'End Work'
+            on_press: root.end_work()
